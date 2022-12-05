@@ -1,0 +1,22 @@
+puts "Ruby Unary operators"
+puts (~5)
+puts (~-5)
+puts (!true)
+puts (!false)
+puts "Ruby Arithmetic operators"
+puts (5+8)
+puts (10-8)
+puts (16/8)
+puts (5*8)
+puts (4%8)
+puts("Ruby Ternary operator")   
+puts(2<5 ? 5:2)   
+puts(5<2 ? 5:2) 
+puts ("Ruby Comparison operator")  
+puts(2 == 5)   
+puts(2 != 5)   
+puts(2 > 5)   
+puts(2 < 5)   
+puts(2 >= 5)   
+puts(2 <= 5) 
+ 
