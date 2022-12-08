@@ -1,0 +1,13 @@
+<div class="container mt-5">
+    <% if @cms_page.present? %>
+    <div class="card" style="width: 40rem;">
+        <div class="card-body">
+        <h2 class="card-title"><%= @cms_page.title %></h2>
+        <p class="card-text"><%= raw @cms_page.description %></p>
+        <%= link_to 'Home','/home',class:'btn btn-primary' %>
+        </div>
+    </div>
+    <% else %>
+    <h1 class="text-center">Welcome to the CMS System</h1>
+    <% end %>
+</div>
