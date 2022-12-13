@@ -17,5 +17,6 @@ Rails.application.routes.draw do
   post '/orders', to: 'orders#create'
   get '/history', to: 'orders#history'
   get '/orders/:id' => 'orders#order_detail'
+  delete '/carts' => 'carts#empty_cart'
 end
 

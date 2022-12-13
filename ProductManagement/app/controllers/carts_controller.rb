@@ -37,4 +37,10 @@ class CartsController < ApplicationController
         @cart.destroy
         redirect_to "/carts", status: :see_other
     end
+
+    def empty_cart
+        @cart = Cart.where(user_id:current_user.id).all
+        @cart.delete_all
+        redirect_to "/carts", status: :see_other
+    end
 end

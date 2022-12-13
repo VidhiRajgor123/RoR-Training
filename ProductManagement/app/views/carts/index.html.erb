@@ -40,6 +40,13 @@
                     <% @total_qty += c.qty %>
                     <% end %>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6"> 
+                    <%= link_to 'Empty Cart', {:action => 'empty_cart'}, data: { turbo_method: :delete,turbo_confirm: 'Are you sure?'}, class: 'btn btn-danger text-white text-decoration-none' %>   
+                    </td>
+                </tr> 
+            </tfoot>
         </table>
         </div>
         <div class="col-sm-6">
@@ -56,8 +63,8 @@
                   <li class="list-group-item"><h3>Final Amount: ₹<%= @total_amount %></h3></li>
                   <li class="list-group-item"><h3>Payment Option: <%= f.radio_button :paymentmethod, 'cod',checked: true %> 
                     <%= f.label :paymentmethod, 'COD', :value => 'cod' %></h3></li>
-                  <li class="list-group-item"><h3><%= f.label :name %> <%= f.text_field :name, class: 'form-control' %> </h3></li>
-                  <li class="list-group-item"><h3><%= f.label :mobile %> <%= f.text_field :mobile, class: 'form-control' %> </h3></li>
+                  <li class="list-group-item"><h3><%= f.label :name %> <%= f.text_field :name, class: 'form-control' %></h3></li>
+                  <li class="list-group-item"><h3><%= f.label :mobile %> <%= f.text_field :mobile, class: 'form-control' %></h3></li>
                   <li class="list-group-item"><h3><%= f.label :address %> <%= f.text_area :address, class: 'form-control' %></h3></li>
                 </ul>
                 <div class="card-body">

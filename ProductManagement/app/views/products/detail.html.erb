@@ -24,7 +24,7 @@
                     <h5><%= @product.description %></h5>
                 </div>
                 <div class="bbb_deals_info_line d-flex flex-row justify-content-start">
-                    <%= link_to "Add to Cart", add_to_cart_path(:product_id => @product.id), class:"btn btn-secondary" %>
+                    <%= link_to "Add to Cart", add_to_cart_path(:product_id => @product.id), :method => :post, class:"btn btn-secondary" %>
                 </div>
             </div>
         </div>
