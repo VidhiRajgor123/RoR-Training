@@ -19,7 +19,7 @@
                         <div class="available">
                             <div class="available_line d-flex flex-row justify-content-start">
                                 <div class="available_title">
-                                    <%= link_to "Add to Cart", add_to_cart_path(:product_id => product.id), class:"btn btn-secondary" %>
+                                    <%= link_to "Add to Cart", add_to_cart_path(:product_id => product.id), :method => :post, class:"btn btn-secondary" %>
                                 </div>
                             </div>
                         </div>
