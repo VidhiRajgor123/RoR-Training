@@ -1,0 +1,51 @@
+<div class="container">
+    <% if @orders.present? %>
+    <h1>Total Orders: <%= @orders.count %></h1>
+    <div class="row">
+        <div class="col-sm-12">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Total Amount</th>
+                    <th scope="col">Total Qty.</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Payment Method</th>
+                    <th scope="col">Order Date</th>
+                    <th scope="col">View Order Detail</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @orders.each_with_index do |order,index| %>
+                    <tr>
+                        <td scope="row">
+                            <%= index+1 %>
+                        </td>
+                        <td>
+                            ₹<%= order.total_amount %>
+                        </td>
+                        <td>
+                            <%= order.total_qty %>
+                        </td>
+                        <td><%= order.status %>
+                        </td>
+                        <td><%= order.paymentmethod %>
+                        </td>
+                        <td><%= order.order_date.strftime("%d-%m-%Y %l:%M%P") %>
+                        </td>
+                        <td>
+                            <%= link_to 'View Order', {:action => 'order_detail', :id => order.id}, class: 'btn btn-success text-white text-decoration-none' %>
+                        </td>
+                    </tr>
+                    <% end %>
+            </tbody>
+        </table>
+        </div>
+    </div>
+    <% else %>
+    <div class="p-3 mb-2 text-center">
+        <%= image_tag "cart.jpg", height: 300 %>
+        <h1>No orders found!!</h1>
+    </div>
+    <% end %>
+</div>

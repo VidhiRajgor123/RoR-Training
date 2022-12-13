@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3>Hi <%= @order.name %></h3>
+    <p>You have successfully placed an order with us.</p>
+    <p>Please find the details of order....<br></p>
+    <p>Name: <%= @order.name %></p>
+    <p>Mobile No: <%= @order.mobile %></p>
+    <p>Address: <%= @order.address %></p>
+    <p>Total Qty: <%= @order.total_qty %></p>
+    <p>Total Amount: <%= @order.total_amount %></p>
+    <p>Payment Method: <%= @order.paymentmethod %></p>
+    <p>Order Date: <%= @order.order_date.strftime("%d-%m-%Y %l:%M%P") %></p><br>
+
+    <h3>Order Summary</h3>
+    <table class="detail-table" width="60%" style="text-align: left; border: 1px groove;border-collapse: collapse;" border="1" >
+        <tr>
+            <th>#</th>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Total Price</th>
+        </tr>
+        <% @order_items.each_with_index do |item,index| %>
+        <tr>
+            <td>
+                <%= index+1 %>
+            </td>
+            <td>
+                <%= item.product.name %>
+            </td>
+            <td><%= item.qty %>
+            </td>
+            <td>₹<%= item.price %>
+            </td>
+            <td>
+                ₹<%= item.qty*item.price %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+  </body>
+</html>

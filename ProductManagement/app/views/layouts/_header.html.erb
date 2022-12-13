@@ -1,0 +1,17 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div><h2 class="text-center text-white font-weight-bold">Ecommerce Store</h2></div>
+  <div class="topnav">
+    <span><%= link_to "Products", products_path, :class => 'navbar-link'  %></span>
+    <span><%= link_to "Cart", "/carts", :class => 'navbar-link'  %></span>
+    <span style="background-color: red;color: white;font-size: 20px!important;"><% if !@cart.nil? && @cart.count > 0 %><%= @cart.count %><% end %></span>
+    <% if user_signed_in? %>
+    <span><%= link_to "Profile", edit_user_registration_path, :class => 'navbar-link'  %></span>
+    <span><%= link_to "History", "/history", :class => 'navbar-link'  %></span>
+    <span><%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, :class => 'navbar-link'  %></span>
+    <h4 class="text-white"><%= "User logged in as : #{current_user.email} "%></h4>
+    <% else %>
+    <span><%= link_to "Sign In", new_user_session_path, :class => 'navbar-link'  %></span>
+    <span><%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-link'  %></span>
+    <% end %>
+  </div>
+</nav>

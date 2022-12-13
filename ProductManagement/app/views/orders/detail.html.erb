@@ -1,0 +1,54 @@
+<div class="container">
+    <h1>Order Details</h1>
+    <div class="row">
+        <div class="col-sm-6">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Order ID</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Qty.</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @order_items.each_with_index do |item,index| %>
+                    <tr>
+                        <td scope="row">
+                            <%= index+1 %>
+                        </td>
+                        <td>
+                            <%= item.order_id %>
+                        </td>
+                        <td>
+                            <%= item.product.name %>
+                        </td>
+                        <td><%= item.qty %>
+                        </td>
+                        <td>₹<%= item.price %>
+                        </td>
+                        <td>
+                            ₹<%= item.qty*item.price %>
+                        </td>
+                    </tr>
+                    <% end %>
+            </tbody>
+        </table>
+        </div>
+        <div class="col-sm-3 mr-1">
+            <div class="card" style="width: 30rem;">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><h3>Total Qty: <%= @order.total_qty %></h3></li>
+                  <li class="list-group-item"><h3>Total Amount: ₹<%= @order.total_amount %></h3></li>
+                  <li class="list-group-item"><h3>Payment Method: <%= @order.paymentmethod %></h3></li>
+                  <li class="list-group-item"><h3>Order Date: <%= @order.order_date.strftime("%d-%m-%Y %l:%M%P") %></h3></li>
+                  <li class="list-group-item"><h3>Name: <%= @order.name %></h3></li>
+                  <li class="list-group-item"><h3>Mobile: <%= @order.mobile %></h3></li>
+                  <li class="list-group-item"><h3>Address: <%= @order.address %></h3></li>
+                </ul>
+              </div>
+        </div>
+    </div>
+</div>

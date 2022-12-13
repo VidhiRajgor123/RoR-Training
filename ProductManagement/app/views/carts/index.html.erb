@@ -1,0 +1,77 @@
+<div class="container">
+    <% if @cart.present? %>
+    <h1>Current Cart Items: <%= @cart.count %></h1>
+    <div class="row">
+        <div class="col-sm-6">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Remove Item</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @total_amount = 0 %>
+                <% @total_qty = 0 %>
+                <% @cart.each_with_index do |c,index| %>
+                    <tr>
+                        <td scope="row">
+                            <%= index+1 %>
+                        </td>
+                        <td>
+                            <%= c.product.name %>
+                        </td>
+                        <td>
+                            <%= c.qty %>
+                        </td>
+                        <td>₹<%= c.product.price %>
+                        </td>
+                        <td>₹<%= c.product.price*c.qty %>
+                        </td>
+                        <td>
+                            <%= link_to 'Remove', {:action => 'destroy', :id => c.id}, data: { turbo_method: :delete,turbo_confirm: 'Are you sure?'}, class: 'btn btn-danger text-white text-decoration-none' %>
+                        </td>
+                    </tr>
+                    <% @total_amount += c.product.price*c.qty %>
+                    <% @total_qty += c.qty %>
+                    <% end %>
+            </tbody>
+        </table>
+        </div>
+        <div class="col-sm-6">
+            <div class="card" style="width: 30rem;">
+                <div class="card-body">
+                  <h3 class="card-title">Price Details</h3>
+                </div>
+                <%= form_for Order.new, :url => url_for(:controller => 'orders', :action => 'create') do |f| %>
+                <%= f.hidden_field :total_amount, :value => @total_amount %>
+                <%= f.hidden_field :total_qty, :value => @total_qty %>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><h3>Total Qty: <%= @total_qty %></h3></li>
+                  <li class="list-group-item"><h3>Total: ₹<%= @total_amount %></h3></li>
+                  <li class="list-group-item"><h3>Final Amount: ₹<%= @total_amount %></h3></li>
+                  <li class="list-group-item"><h3>Payment Option: <%= f.radio_button :paymentmethod, 'cod',checked: true %> 
+                    <%= f.label :paymentmethod, 'COD', :value => 'cod' %></h3></li>
+                  <li class="list-group-item"><h3><%= f.label :name %> <%= f.text_field :name, class: 'form-control' %> </h3></li>
+                  <li class="list-group-item"><h3><%= f.label :mobile %> <%= f.text_field :mobile, class: 'form-control' %> </h3></li>
+                  <li class="list-group-item"><h3><%= f.label :address %> <%= f.text_area :address, class: 'form-control' %></h3></li>
+                </ul>
+                <div class="card-body">
+                    <%= button_to "Place Order", :url => url_for(:controller => 'orders', :action => 'create'), :method => :post, :form_class => "btn btn-primary" %>
+                    <!-- <%= f.submit "Place Order", class: "btn btn-primary" %> -->
+                </div>
+                <% end %>
+              </div>
+        </div>
+    </div>
+    <% else %>
+    <div class="p-3 mb-2 text-center">
+        <%= image_tag "cart.jpg", height: 300 %>
+        <h1>Your cart is empty</h1>
+      </div>
+    <% end %>
+</div>

@@ -1,0 +1,32 @@
+<div class="container mydiv">
+    <div class="row">
+        <% @products.each do |product| %>
+        <div class="col-md-4 mb-5">
+            <div class="bbb_deals">
+                <div class="bbb_deals_title"><%= product.name %></div>
+                <div class="bbb_deals_slider_container">
+                    <div class=" bbb_deals_item">
+                        <div class="bbb_deals_image">
+                            <!-- <%= @product.inspect %> -->
+                            <%= link_to image_tag(product.image.thumb.url,:width => 200,:height => 200, alt: 'Thumbnails Image'),product_path(product.id)  %>
+                        </div>
+                        <div class="bbb_deals_content">
+                            <div class="bbb_deals_info_line d-flex flex-row justify-content-start">
+                                <div class="bbb_deals_item_name"><%= product.name %></div>
+                                <div class="bbb_deals_item_price ml-auto">₹<%= product.price %></div>
+                            </div>
+                        </div>
+                        <div class="available">
+                            <div class="available_line d-flex flex-row justify-content-start">
+                                <div class="available_title">
+                                    <%= link_to "Add to Cart", add_to_cart_path(:product_id => product.id), class:"btn btn-secondary" %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>

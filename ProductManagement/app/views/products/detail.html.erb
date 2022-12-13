@@ -1,0 +1,32 @@
+<div class="container mydiv">
+    <div class="row">
+        <div class="col-md-8 mb-5">
+            <div class="bbb_deals">
+                <div class="bbb_deals_slider_container">
+                    <div class=" bbb_deals_item">
+                        <div class="bbb_deals_image">
+                            <%= image_tag(@product.image.url, alt: 'Image')  %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-5">
+            <div class="bbb_deals_content">
+                <h1 class="font-weight-bold mb-5">Product Details</h1>
+                <div class="bbb_deals_info_line d-flex flex-row justify-content-start">
+                    <h2>Product: <%= @product.name %></h2>
+                </div>
+                <div class="bbb_deals_info_line d-flex flex-row justify-content-start">
+                    <h2>Price: ₹<%= @product.price %></h2>
+                </div>
+                <div class="bbb_deals_info_line d-flex flex-row justify-content-start">
+                    <h5><%= @product.description %></h5>
+                </div>
+                <div class="bbb_deals_info_line d-flex flex-row justify-content-start">
+                    <%= link_to "Add to Cart", add_to_cart_path(:product_id => @product.id), class:"btn btn-secondary" %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
