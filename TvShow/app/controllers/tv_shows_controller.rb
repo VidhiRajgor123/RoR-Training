@@ -10,7 +10,8 @@ class TvShowsController < ApplicationController
     def add_to_favourites
         if user_signed_in?
             # puts params[:show_id]
-            @favshow = Favourite.where('show_id= ?',params[:show_id]).where('user_id = ?',current_user.id).first
+            # @favshow = Favourite.where('show_id= ?',params[:show_id]).where('user_id = ?',current_user.id).first
+            @favshow = Favourite.where(show_id: params[:show_id],user_id: current_user.id).first
             if !@favshow 
                 @favourite = Favourite.new(:show_id => params[:show_id],:user_id => current_user.id)
                 if @favourite.save
@@ -29,7 +30,8 @@ class TvShowsController < ApplicationController
 
     def remove_from_favorites
         if user_signed_in?
-            @favshow = Favourite.where('show_id = ?',params[:show_id]).where('user_id = ?',current_user.id).first
+            # @favshow = Favourite.where('show_id = ?',params[:show_id]).where('user_id = ?',current_user.id).first
+            @favshow = Favourite.where(show_id: params[:show_id],user_id: current_user.id).first
             if @favshow
                 @favshow.destroy
                 redirect_to "/tv_shows", status: :see_other
